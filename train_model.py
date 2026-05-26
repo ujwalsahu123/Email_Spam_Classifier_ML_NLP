@@ -6,6 +6,7 @@ import nltk
 import pandas as pd
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
+from nltk.tokenize import wordpunct_tokenize
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import accuracy_score, precision_score
 from sklearn.model_selection import train_test_split
@@ -14,7 +15,7 @@ from sklearn.naive_bayes import MultinomialNB
 
 def transform_text(text):
     text = text.lower()
-    text = nltk.word_tokenize(text)
+    text = wordpunct_tokenize(text)
 
     tokens = []
     for token in text:
@@ -39,7 +40,6 @@ def transform_text(text):
 
 
 def main():
-    nltk.download('punkt', quiet=True)
     nltk.download('stopwords', quiet=True)
 
     spam = pd.read_csv('data/spam.csv', encoding='latin1')

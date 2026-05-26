@@ -4,13 +4,13 @@ import pickle
 import string
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
+from nltk.tokenize import wordpunct_tokenize
 
 ps = PorterStemmer()
 
 
 @st.cache_resource
 def download_nltk():
-    nltk.download('punkt')
     nltk.download('stopwords')
 
 
@@ -68,7 +68,7 @@ st.markdown(
 
 def transform_text(text):
     text = text.lower()
-    text = nltk.word_tokenize(text)
+    text = wordpunct_tokenize(text)
 
     y = []
     for i in text:
