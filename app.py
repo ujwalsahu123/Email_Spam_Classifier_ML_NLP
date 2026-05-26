@@ -1,11 +1,20 @@
 import streamlit as st
+import nltk
 import pickle
 import string
 from nltk.corpus import stopwords
-import nltk
 from nltk.stem.porter import PorterStemmer
 
 ps = PorterStemmer()
+
+
+@st.cache_resource
+def download_nltk():
+    nltk.download('punkt')
+    nltk.download('stopwords')
+
+
+download_nltk()
 
 st.set_page_config(page_title="Inbox Shield", page_icon="📨", layout="centered")
 
